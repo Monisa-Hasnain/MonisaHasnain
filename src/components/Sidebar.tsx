@@ -74,7 +74,7 @@ export const Sidebar = () => {
         initial={{ x: -300 }}
         animate={{ x: 0 }}
         transition={{ type: "spring", damping: 20 }}
-        className={`fixed left-0 top-0 h-screen w-80 bg-card border-r border-border p-8 flex flex-col justify-between z-40 ${
+        className={`fixed left-0 top-0 h-screen w-80 bg-background p-12 flex flex-col justify-between z-40 ${
           mobileMenuOpen ? "flex" : "hidden lg:flex"
         }`}
       >
@@ -83,17 +83,20 @@ export const Sidebar = () => {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className="mb-12"
+            className="mb-16"
           >
-            <h1 className="text-4xl font-bold mb-2">
-              <span className="text-gradient">Monisa Hasnain</span>
+            <h1 className="text-5xl font-bold mb-3 text-foreground tracking-tight">
+              Monisa Hasnain
             </h1>
-            <p className="text-lg text-steel font-medium">
+            <h2 className="text-xl font-medium text-foreground mb-4">
               Data Automation & Integration Consultant
+            </h2>
+            <p className="text-muted-foreground text-base leading-relaxed">
+              I build accessible, pixel-perfect digital experiences for the web.
             </p>
           </motion.div>
 
-          <nav className="space-y-1">
+          <nav className="space-y-4">
             {navItems.map((item, index) => (
               <motion.button
                 key={item.id}
@@ -101,13 +104,22 @@ export const Sidebar = () => {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.3 + index * 0.1 }}
                 onClick={() => scrollToSection(item.id)}
-                className={`w-full text-left px-4 py-2 rounded-lg transition-all duration-300 group ${
-                  activeSection === item.id
-                    ? "text-teal"
-                    : "text-muted-foreground hover:text-foreground"
-                }`}
+                className="w-full text-left group flex items-center gap-4 transition-all duration-300"
               >
-                <span className="inline-block transition-transform duration-300 group-hover:translate-x-2 font-medium">
+                <span 
+                  className={`h-px transition-all duration-300 ${
+                    activeSection === item.id 
+                      ? "w-16 bg-foreground" 
+                      : "w-8 bg-muted-foreground group-hover:w-16 group-hover:bg-foreground"
+                  }`}
+                />
+                <span 
+                  className={`text-xs font-bold uppercase tracking-widest transition-all duration-300 ${
+                    activeSection === item.id
+                      ? "text-foreground"
+                      : "text-muted-foreground group-hover:text-foreground"
+                  }`}
+                >
                   {item.label}
                 </span>
               </motion.button>
@@ -119,35 +131,26 @@ export const Sidebar = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.8 }}
-          className="space-y-4"
+          className="flex gap-5"
         >
-          <div className="flex gap-3">
-            <a
-              href="https://www.linkedin.com/in/monisa-hasnain/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex-1"
-            >
-              <Button variant="outline" className="w-full gap-2 hover:bg-teal hover:text-white hover:border-teal transition-all">
-                <Linkedin className="h-4 w-4" />
-                LinkedIn
-              </Button>
-            </a>
-            <a
-              href="https://github.com/Monisa-Hasnain"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex-1"
-            >
-              <Button variant="outline" className="w-full gap-2 hover:bg-steel hover:text-white hover:border-steel transition-all">
-                <Github className="h-4 w-4" />
-                GitHub
-              </Button>
-            </a>
-          </div>
-          <p className="text-xs text-muted-foreground text-center">
-            © 2025 Monisa Hasnain
-          </p>
+          <a
+            href="https://github.com/Monisa-Hasnain"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-muted-foreground hover:text-accent transition-colors duration-300"
+            aria-label="GitHub"
+          >
+            <Github className="h-6 w-6" />
+          </a>
+          <a
+            href="https://www.linkedin.com/in/monisa-hasnain/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-muted-foreground hover:text-accent transition-colors duration-300"
+            aria-label="LinkedIn"
+          >
+            <Linkedin className="h-6 w-6" />
+          </a>
         </motion.div>
       </motion.aside>
 
