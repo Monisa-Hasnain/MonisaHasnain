@@ -67,11 +67,11 @@ export const Projects = () => {
                 {project.description}
               </p>
               
-              <div className="flex flex-wrap gap-2 mb-4">
+              <div className="flex flex-wrap gap-3 mb-4">
                 {project.tags.map((tag, tagIndex) => (
                   <span
                     key={tagIndex}
-                    className="px-3 py-1 bg-accent text-accent-foreground rounded-md text-xs font-medium"
+                    className="text-xs font-medium text-teal"
                   >
                     {tag}
                   </span>

@@ -49,8 +49,7 @@ export const Skills = () => {
                       viewport={{ once: true }}
                       transition={{ delay: categoryIndex * 0.1 + skillIndex * 0.05, duration: 0.3 }}
                       whileHover={{ scale: 1.05, y: -2 }}
-                      className="px-4 py-2 bg-accent text-accent-foreground rounded-lg text-sm font-medium
-                               hover:bg-teal hover:text-white transition-all cursor-default shadow-sm"
+                      className="text-sm font-medium text-teal transition-all cursor-default"
                     >
                       {skill}
                     </motion.span>
