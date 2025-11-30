@@ -6,7 +6,7 @@ const projects = [
   {
     title: "Dues Reminder System",
     description: "90% reduction in follow-up time and 100% elimination of manual tracking",
-    tags: ["Automation", "Make.com", "Email Integration"],
+    tags: ["Automation", "n8n", "Email Integration"],
     link: null,
   },
   {
@@ -18,13 +18,13 @@ const projects = [
   {
     title: "Data Cleaning Assistant",
     description: "70% time reduction in data preprocessing with automated validation",
-    tags: ["Python", "Data Processing", "AI"],
+    tags: ["Cursor ai", "Data Processing", "AI"],
     link: "https://data-cleaning-assistant.vercel.app",
   },
   {
     title: "Data Scraping & Email Automation",
     description: "85% reduction in response time through intelligent automation",
-    tags: ["Python", "Web Scraping", "Automation"],
+    tags: ["Make.com", "Web Scraping", "Automation"],
     link: null,
   },
   {
