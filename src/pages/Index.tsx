@@ -11,13 +11,23 @@ const Index = () => {
     <div className="min-h-screen bg-background">
       <Sidebar />
       
-      <main className="lg:ml-80 px-6 md:px-12 lg:px-20">
+      <main className="lg:ml-80 px-6 md:px-12 lg:px-20 h-screen overflow-y-scroll snap-y snap-mandatory">
         <div className="max-w-6xl mx-auto">
-          <About />
-          <Skills />
-          <Certifications />
-          <Experience />
-          <Projects />
+          <section className="snap-start min-h-screen">
+            <About />
+          </section>
+          <section className="snap-start min-h-screen">
+            <Skills />
+          </section>
+          <section className="snap-start min-h-screen">
+            <Certifications />
+          </section>
+          <section className="snap-start min-h-screen">
+            <Experience />
+          </section>
+          <section className="snap-start min-h-screen">
+            <Projects />
+          </section>
         </div>
       </main>
 

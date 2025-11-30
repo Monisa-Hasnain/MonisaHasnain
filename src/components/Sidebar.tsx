@@ -58,12 +58,9 @@ export const Sidebar = () => {
             <p className="text-lg text-steel font-medium">
               Data Automation & Integration Consultant
             </p>
-            <p className="text-sm text-muted-foreground mt-2">
-              Transforming data into actionable insights
-            </p>
           </motion.div>
 
-          <nav className="space-y-2">
+          <nav className="space-y-1">
             {navItems.map((item, index) => (
               <motion.button
                 key={item.id}
@@ -71,19 +68,14 @@ export const Sidebar = () => {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.3 + index * 0.1 }}
                 onClick={() => scrollToSection(item.id)}
-                className={`w-full text-left px-4 py-3 rounded-lg transition-all duration-300 ${
+                className={`w-full text-left px-4 py-2 rounded-lg transition-all duration-300 group ${
                   activeSection === item.id
-                    ? "bg-teal text-white shadow-md"
-                    : "hover:bg-accent text-foreground"
+                    ? "text-teal"
+                    : "text-muted-foreground hover:text-foreground"
                 }`}
               >
-                <span className="flex items-center gap-3">
-                  <span
-                    className={`h-1 w-8 rounded-full transition-all ${
-                      activeSection === item.id ? "bg-white" : "bg-teal"
-                    }`}
-                  />
-                  <span className="font-medium">{item.label}</span>
+                <span className="inline-block transition-transform duration-300 group-hover:translate-x-2 font-medium">
+                  {item.label}
                 </span>
               </motion.button>
             ))}
