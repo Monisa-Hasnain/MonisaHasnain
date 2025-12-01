@@ -3,12 +3,41 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ExternalLink, Github, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
+// ============ PROJECT IMAGES ============
+// Add your images to the folders below, then uncomment the imports:
+
+// Dues Reminder System - src/assets/projects/dues-reminder/
+// import duesReminder1 from "@/assets/projects/dues-reminder/screenshot-1.png";
+// import duesReminder2 from "@/assets/projects/dues-reminder/screenshot-2.png";
+
+// NeonRail FPS - src/assets/projects/neonrail/
+// import neonrail1 from "@/assets/projects/neonrail/screenshot-1.png";
+// import neonrail2 from "@/assets/projects/neonrail/screenshot-2.png";
+
+// Data Cleaning Assistant - src/assets/projects/data-cleaning/
+// import dataCleaning1 from "@/assets/projects/data-cleaning/screenshot-1.png";
+// import dataCleaning2 from "@/assets/projects/data-cleaning/screenshot-2.png";
+
+// Data Scraping & Email - src/assets/projects/data-scraping/
+// import dataScraping1 from "@/assets/projects/data-scraping/screenshot-1.png";
+// import dataScraping2 from "@/assets/projects/data-scraping/screenshot-2.png";
+
+// Oil & Gas Analytics - src/assets/projects/oil-gas/
+// import oilGas1 from "@/assets/projects/oil-gas/screenshot-1.png";
+// import oilGas2 from "@/assets/projects/oil-gas/screenshot-2.png";
+
+// Sales Insights - src/assets/projects/sales-insights/
+// import salesInsights1 from "@/assets/projects/sales-insights/screenshot-1.png";
+// import salesInsights2 from "@/assets/projects/sales-insights/screenshot-2.png";
+
+// ========================================
+
 interface Project {
   title: string;
   description: string;
   tags: string[];
   link: string | null;
-  images?: string[]; // Add your image paths here
+  images: string[];
 }
 
 const projects: Project[] = [
@@ -17,42 +46,42 @@ const projects: Project[] = [
     description: "90% reduction in follow-up time and 100% elimination of manual tracking",
     tags: ["Automation", "n8n", "Email Integration"],
     link: null,
-    images: [], // Add images: ["/projects/dues-reminder-1.png", "/projects/dues-reminder-2.png"]
+    images: [], // Add: [duesReminder1, duesReminder2]
   },
   {
     title: "FPS Shooting Game - NeonRail",
     description: "AI-powered game development with Cursor AI and Android deployment",
     tags: ["Unity", "Android", "AI Development"],
     link: "https://github.com/Monisa-Hasnain/NeonRailFPS/releases/tag/v1.0",
-    images: [],
+    images: [], // Add: [neonrail1, neonrail2]
   },
   {
     title: "Data Cleaning Assistant",
     description: "70% time reduction in data preprocessing with automated validation",
     tags: ["Cursor ai", "Data Processing", "AI"],
     link: "https://data-cleaning-assistant.vercel.app",
-    images: [],
+    images: [], // Add: [dataCleaning1, dataCleaning2]
   },
   {
     title: "Data Scraping & Email Automation",
     description: "85% reduction in response time through intelligent automation",
     tags: ["Make.com", "Web Scraping", "Automation"],
     link: null,
-    images: [],
+    images: [], // Add: [dataScraping1, dataScraping2]
   },
   {
     title: "Oil and Gas Production Analytics",
     description: "Comprehensive Power BI solution analyzing 30,000+ production records across multiple counties, with real-time monitoring for oil, gas, and water production metrics (1967-1999 data)",
     tags: ["Power BI", "Excel", "Analytics"],
     link: "https://github.com/Monisa-Hasnain/oil-gas-production-analytics/tree/Dashboard",
-    images: [],
+    images: [], // Add: [oilGas1, oilGas2]
   },
   {
     title: "Sales Insights Dashboard",
     description: "Interactive Power BI analytics project with comprehensive KPI tracking and performance visualization",
     tags: ["Power BI", "Excel", "Business Intelligence"],
     link: "https://github.com/Monisa-Hasnain/Sales-Insights",
-    images: [],
+    images: [], // Add: [salesInsights1, salesInsights2]
   },
 ];
 
