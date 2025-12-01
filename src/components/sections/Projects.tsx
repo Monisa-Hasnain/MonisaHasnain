@@ -5,8 +5,8 @@ import { Button } from "@/components/ui/button";
 
 // ============ PROJECT IMAGES ============
 import duesReminder1 from "@/assets/projects/dues-reminder/dues reminder agent.png";
-import dataCleaning1 from "@/assets/projects/DataCleaning/Data cleaning assistant 1.jpg";
-import dataCleaning2 from "@/assets/projects/DataCleaning/Data cleaning assistant 2.jpg";
+import dataCleaning1 from "@/assets/projects/Data Cleaning Assistant/screenshot 1.jpg";
+import dataCleaning2 from "@/assets/projects/Data Cleaning Assistant/screenshot 2.jpg";
 
 // ========================================
 
