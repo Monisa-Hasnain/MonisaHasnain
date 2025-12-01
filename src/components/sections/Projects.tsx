@@ -4,31 +4,9 @@ import { ExternalLink, Github, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 // ============ PROJECT IMAGES ============
-// Add your images to the folders below, then uncomment the imports:
-
-// Dues Reminder System - src/assets/projects/dues-reminder/
-// import duesReminder1 from "@/assets/projects/dues-reminder/screenshot-1.png";
-// import duesReminder2 from "@/assets/projects/dues-reminder/screenshot-2.png";
-
-// NeonRail FPS - src/assets/projects/neonrail/
-// import neonrail1 from "@/assets/projects/neonrail/screenshot-1.png";
-// import neonrail2 from "@/assets/projects/neonrail/screenshot-2.png";
-
-// Data Cleaning Assistant - src/assets/projects/data-cleaning/
-// import dataCleaning1 from "@/assets/projects/data-cleaning/screenshot-1.png";
-// import dataCleaning2 from "@/assets/projects/data-cleaning/screenshot-2.png";
-
-// Data Scraping & Email - src/assets/projects/data-scraping/
-// import dataScraping1 from "@/assets/projects/data-scraping/screenshot-1.png";
-// import dataScraping2 from "@/assets/projects/data-scraping/screenshot-2.png";
-
-// Oil & Gas Analytics - src/assets/projects/oil-gas/
-// import oilGas1 from "@/assets/projects/oil-gas/screenshot-1.png";
-// import oilGas2 from "@/assets/projects/oil-gas/screenshot-2.png";
-
-// Sales Insights - src/assets/projects/sales-insights/
-// import salesInsights1 from "@/assets/projects/sales-insights/screenshot-1.png";
-// import salesInsights2 from "@/assets/projects/sales-insights/screenshot-2.png";
+import duesReminder1 from "@/assets/projects/dues-reminder/dues reminder agent.png";
+import dataCleaning1 from "@/assets/projects/DataCleaning/Data cleaning assistant 1.jpg";
+import dataCleaning2 from "@/assets/projects/DataCleaning/Data cleaning assistant 2.jpg";
 
 // ========================================
 
@@ -46,7 +24,7 @@ const projects: Project[] = [
     description: "90% reduction in follow-up time and 100% elimination of manual tracking",
     tags: ["Automation", "n8n", "Email Integration"],
     link: null,
-    images: [], // Add: [duesReminder1, duesReminder2]
+    images: [duesReminder1],
   },
   {
     title: "FPS Shooting Game - NeonRail",
@@ -60,7 +38,7 @@ const projects: Project[] = [
     description: "70% time reduction in data preprocessing with automated validation",
     tags: ["Cursor ai", "Data Processing", "AI"],
     link: "https://data-cleaning-assistant.vercel.app",
-    images: [], // Add: [dataCleaning1, dataCleaning2]
+    images: [dataCleaning1, dataCleaning2],
   },
   {
     title: "Data Scraping & Email Automation",
