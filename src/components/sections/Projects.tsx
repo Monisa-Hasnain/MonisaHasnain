@@ -1,47 +1,68 @@
-import { motion } from "framer-motion";
-import { ExternalLink, Github } from "lucide-react";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { ExternalLink, Github, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
-const projects = [
+interface Project {
+  title: string;
+  description: string;
+  tags: string[];
+  link: string | null;
+  images?: string[]; // Add your image paths here
+}
+
+const projects: Project[] = [
   {
     title: "Dues Reminder System",
     description: "90% reduction in follow-up time and 100% elimination of manual tracking",
     tags: ["Automation", "n8n", "Email Integration"],
     link: null,
+    images: [], // Add images: ["/projects/dues-reminder-1.png", "/projects/dues-reminder-2.png"]
   },
   {
     title: "FPS Shooting Game - NeonRail",
     description: "AI-powered game development with Cursor AI and Android deployment",
     tags: ["Unity", "Android", "AI Development"],
     link: "https://github.com/Monisa-Hasnain/NeonRailFPS/releases/tag/v1.0",
+    images: [],
   },
   {
     title: "Data Cleaning Assistant",
     description: "70% time reduction in data preprocessing with automated validation",
     tags: ["Cursor ai", "Data Processing", "AI"],
     link: "https://data-cleaning-assistant.vercel.app",
+    images: [],
   },
   {
     title: "Data Scraping & Email Automation",
     description: "85% reduction in response time through intelligent automation",
     tags: ["Make.com", "Web Scraping", "Automation"],
     link: null,
+    images: [],
   },
   {
     title: "Oil and Gas Production Analytics",
     description: "Comprehensive Power BI solution analyzing 30,000+ production records across multiple counties, with real-time monitoring for oil, gas, and water production metrics (1967-1999 data)",
     tags: ["Power BI", "Excel", "Analytics"],
     link: "https://github.com/Monisa-Hasnain/oil-gas-production-analytics/tree/Dashboard",
+    images: [],
   },
   {
     title: "Sales Insights Dashboard",
     description: "Interactive Power BI analytics project with comprehensive KPI tracking and performance visualization",
     tags: ["Power BI", "Excel", "Business Intelligence"],
     link: "https://github.com/Monisa-Hasnain/Sales-Insights",
+    images: [],
   },
 ];
 
 export const Projects = () => {
+  const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
+
+  const toggleExpand = (index: number) => {
+    setExpandedIndex(expandedIndex === index ? null : index);
+  };
+
   return (
     <section id="projects" className="min-h-screen flex items-center py-20">
       <div className="w-full max-w-5xl">
@@ -62,7 +83,23 @@ export const Projects = () => {
               whileHover={{ y: -8 }}
               className="bg-card rounded-xl p-6 border border-border card-hover shadow-sm flex flex-col"
             >
-              <h3 className="text-xl font-bold mb-3 text-foreground">{project.title}</h3>
+              <div className="flex justify-between items-start">
+                <h3 className="text-xl font-bold mb-3 text-foreground">{project.title}</h3>
+                {project.images && project.images.length > 0 && (
+                  <button
+                    onClick={() => toggleExpand(index)}
+                    className="p-1 hover:bg-muted rounded-md transition-colors"
+                  >
+                    <motion.div
+                      animate={{ rotate: expandedIndex === index ? 180 : 0 }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      <ChevronDown className="h-5 w-5 text-muted-foreground" />
+                    </motion.div>
+                  </button>
+                )}
+              </div>
+              
               <p className="text-muted-foreground text-sm mb-4 flex-grow leading-relaxed">
                 {project.description}
               </p>
@@ -77,6 +114,29 @@ export const Projects = () => {
                   </span>
                 ))}
               </div>
+
+              <AnimatePresence>
+                {expandedIndex === index && project.images && project.images.length > 0 && (
+                  <motion.div
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: "auto", opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    transition={{ duration: 0.3 }}
+                    className="overflow-hidden mb-4"
+                  >
+                    <div className="grid grid-cols-2 gap-2 pt-2 border-t border-border">
+                      {project.images.map((image, imgIndex) => (
+                        <img
+                          key={imgIndex}
+                          src={image}
+                          alt={`${project.title} screenshot ${imgIndex + 1}`}
+                          className="rounded-lg w-full h-32 object-cover"
+                        />
+                      ))}
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
 
               {project.link && (
                 <a
