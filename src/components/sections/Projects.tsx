@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ExternalLink, Github, ChevronDown, X } from "lucide-react";
+import { ExternalLink, Github, ChevronDown, X, ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -70,15 +70,28 @@ const projects: Project[] = [
 
 export const Projects = () => {
   const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
-  const [lightboxImage, setLightboxImage] = useState<{ src: string; title: string } | null>(null);
+  const [lightboxData, setLightboxData] = useState<{ projectIndex: number; imageIndex: number } | null>(null);
 
   const toggleExpand = (index: number) => {
     setExpandedIndex(expandedIndex === index ? null : index);
   };
 
-  const openLightbox = (src: string, title: string) => {
-    setLightboxImage({ src, title });
+  const openLightbox = (projectIndex: number, imageIndex: number) => {
+    setLightboxData({ projectIndex, imageIndex });
   };
+
+  const navigateImage = (direction: 'prev' | 'next') => {
+    if (!lightboxData) return;
+    const images = projects[lightboxData.projectIndex].images;
+    const newIndex = direction === 'next' 
+      ? (lightboxData.imageIndex + 1) % images.length
+      : (lightboxData.imageIndex - 1 + images.length) % images.length;
+    setLightboxData({ ...lightboxData, imageIndex: newIndex });
+  };
+
+  const currentProject = lightboxData ? projects[lightboxData.projectIndex] : null;
+  const currentImage = lightboxData && currentProject ? currentProject.images[lightboxData.imageIndex] : null;
+  const hasMultipleImages = currentProject && currentProject.images.length > 1;
 
   return (
     <section id="projects" className="min-h-screen flex items-center py-20">
@@ -148,7 +161,7 @@ export const Projects = () => {
                           src={image}
                           alt={`${project.title} screenshot ${imgIndex + 1}`}
                           className="rounded-lg w-full h-32 object-cover cursor-pointer hover:opacity-80 transition-opacity"
-                          onClick={() => openLightbox(image, project.title)}
+                          onClick={() => openLightbox(index, imgIndex)}
                         />
                       ))}
                     </div>
@@ -183,24 +196,46 @@ export const Projects = () => {
       </div>
 
       {/* Lightbox Modal */}
-      <Dialog open={!!lightboxImage} onOpenChange={() => setLightboxImage(null)}>
+      <Dialog open={!!lightboxData} onOpenChange={() => setLightboxData(null)}>
         <DialogContent className="max-w-4xl w-[90vw] max-h-[90vh] p-0 bg-background/95 backdrop-blur-sm border-border">
           <DialogClose className="absolute right-4 top-4 z-10 rounded-full bg-background/80 p-2 hover:bg-muted transition-colors">
             <X className="h-5 w-5" />
           </DialogClose>
-          {lightboxImage && (
+          
+          {/* Navigation Arrows */}
+          {hasMultipleImages && (
+            <>
+              <button
+                onClick={() => navigateImage('prev')}
+                className="absolute left-4 top-1/2 -translate-y-1/2 z-10 rounded-full bg-background/80 p-2 hover:bg-muted transition-colors"
+              >
+                <ChevronLeft className="h-6 w-6" />
+              </button>
+              <button
+                onClick={() => navigateImage('next')}
+                className="absolute right-14 top-1/2 -translate-y-1/2 z-10 rounded-full bg-background/80 p-2 hover:bg-muted transition-colors"
+              >
+                <ChevronRight className="h-6 w-6" />
+              </button>
+            </>
+          )}
+
+          {currentImage && currentProject && (
             <motion.div
+              key={lightboxData?.imageIndex}
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.95 }}
               className="p-4"
             >
               <img
-                src={lightboxImage.src}
-                alt={lightboxImage.title}
+                src={currentImage}
+                alt={currentProject.title}
                 className="w-full h-auto max-h-[80vh] object-contain rounded-lg"
               />
-              <p className="text-center text-muted-foreground mt-3 text-sm">{lightboxImage.title}</p>
+              <p className="text-center text-muted-foreground mt-3 text-sm">
+                {currentProject.title}
+                {hasMultipleImages && ` (${lightboxData!.imageIndex + 1}/${currentProject.images.length})`}
+              </p>
             </motion.div>
           )}
         </DialogContent>
