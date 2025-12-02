@@ -5,10 +5,12 @@ import { Certifications } from "@/components/sections/Certifications";
 import { Experience } from "@/components/sections/Experience";
 import { Projects } from "@/components/sections/Projects";
 import { FloatingContact } from "@/components/FloatingContact";
+import { CursorGlow } from "@/components/CursorGlow";
 
 const Index = () => {
   return (
     <div className="min-h-screen bg-background">
+      <CursorGlow />
       <Sidebar />
       
       <main className="lg:ml-80 px-6 md:px-12 lg:px-20 h-screen overflow-y-scroll snap-y snap-mandatory">
