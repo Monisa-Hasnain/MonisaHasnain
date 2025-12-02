@@ -4,9 +4,9 @@ import { ExternalLink, Github, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 // ============ PROJECT IMAGES ============
-import duesReminder1 from "@/assets/projects/dues-reminder/dues reminder agent.png";
-import dataCleaning1 from "@/assets/projects/Data Cleaning Assistant/screenshot 1.jpg";
-import dataCleaning2 from "@/assets/projects/Data Cleaning Assistant/screenshot 2.jpg";
+import duesReminder1 from "@/assets/projects/dues-reminder/dues-reminder-agent.png";
+import dataCleaning1 from "@/assets/projects/data-cleaning-assistant/screenshot-1.jpg";
+import dataCleaning2 from "@/assets/projects/data-cleaning-assistant/screenshot-2.jpg";
 
 // ========================================
 
