@@ -1,7 +1,12 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ExternalLink, Github, ChevronDown } from "lucide-react";
+import { ExternalLink, Github, ChevronDown, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import {
+  Dialog,
+  DialogContent,
+  DialogClose,
+} from "@/components/ui/dialog";
 
 // ============ PROJECT IMAGES ============
 import duesReminder1 from "@/assets/projects/dues-reminder/dues-reminder-agent.png";
@@ -65,9 +70,14 @@ const projects: Project[] = [
 
 export const Projects = () => {
   const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
+  const [lightboxImage, setLightboxImage] = useState<{ src: string; title: string } | null>(null);
 
   const toggleExpand = (index: number) => {
     setExpandedIndex(expandedIndex === index ? null : index);
+  };
+
+  const openLightbox = (src: string, title: string) => {
+    setLightboxImage({ src, title });
   };
 
   return (
@@ -137,7 +147,8 @@ export const Projects = () => {
                           key={imgIndex}
                           src={image}
                           alt={`${project.title} screenshot ${imgIndex + 1}`}
-                          className="rounded-lg w-full h-32 object-cover"
+                          className="rounded-lg w-full h-32 object-cover cursor-pointer hover:opacity-80 transition-opacity"
+                          onClick={() => openLightbox(image, project.title)}
                         />
                       ))}
                     </div>
@@ -170,6 +181,30 @@ export const Projects = () => {
           ))}
         </motion.div>
       </div>
+
+      {/* Lightbox Modal */}
+      <Dialog open={!!lightboxImage} onOpenChange={() => setLightboxImage(null)}>
+        <DialogContent className="max-w-4xl w-[90vw] max-h-[90vh] p-0 bg-background/95 backdrop-blur-sm border-border">
+          <DialogClose className="absolute right-4 top-4 z-10 rounded-full bg-background/80 p-2 hover:bg-muted transition-colors">
+            <X className="h-5 w-5" />
+          </DialogClose>
+          {lightboxImage && (
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.95 }}
+              className="p-4"
+            >
+              <img
+                src={lightboxImage.src}
+                alt={lightboxImage.title}
+                className="w-full h-auto max-h-[80vh] object-contain rounded-lg"
+              />
+              <p className="text-center text-muted-foreground mt-3 text-sm">{lightboxImage.title}</p>
+            </motion.div>
+          )}
+        </DialogContent>
+      </Dialog>
     </section>
   );
 };
